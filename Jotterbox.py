@@ -493,18 +493,22 @@ class App:
     DATE_MENU_ENTRY_END_X = 220
     WINDOW_MIN_WIDTH_OFFSET = 80
     WINDOW_MIN_HEIGHT_OFFSET = 200
-    APP_SETTINGS_FILENAME = 'settings.txt'
+    WINDOW_DEFAULT_WIDTH = 800
+    WINDOW_DEFAULT_HEIGHT = 500
+    WINDOW_TITLE_ROOT = 'Jotterbox'
     NOTEBOOK_SETTINGS_FILENAME = '.jotterbox'
+    APP_SETTINGS_FILENAME = os.path.dirname(os.path.realpath(__file__)) + '\settings.txt'
+    ICON_FILENAME = os.path.dirname(os.path.realpath(__file__)) + '\icon.ico'
 
     # Initialise window.
     def __init__(self):
         self.root = Tk()
         self.root.withdraw()
-        self.root.title("Jotterbox")
-        self.root.iconbitmap('icon.ico')
+        self.root.title(App.WINDOW_TITLE_ROOT)
+        self.root.iconbitmap(App.ICON_FILENAME)
         self.root.protocol("WM_DELETE_WINDOW", self.on_close)
         self.root.option_add('*tearOff', FALSE)
-        self.root.geometry('800x500')
+        self.root.geometry('{}x{}'.format(App.WINDOW_DEFAULT_WIDTH, App.WINDOW_DEFAULT_HEIGHT))
         self.root.minsize(2 * App.CANVAS_X_MARGIN + App.WINDOW_MIN_WIDTH_OFFSET, App.MENU_HEIGHT + App.WINDOW_MIN_HEIGHT_OFFSET)
         self.root.columnconfigure(0, weight=1)
         self.root.rowconfigure(0, weight=1)
@@ -692,7 +696,7 @@ class App:
 
         #self.update_tag_menu()
         self.new_button_drawing.set_state(NORMAL)
-        self.root.title('Jotterbox - ' + str(self.notebook.dir))
+        self.root.title('{} - {}'.format(App.WINDOW_TITLE_ROOT, str(self.notebook.dir)))
 
     # Create a new notebook (database of notes) after prompting for its path. Also, initialise the notebook's title with a prompt.
     def new_notebook(self, event=None):
@@ -731,7 +735,7 @@ class App:
             self.update_tag_menu()
             self.update_canvas_drawing_pos(self.new_button_drawing.index)
 
-        self.root.title('Jotterbox')
+        self.root.title(App.WINDOW_TITLE_ROOT)
 
     # Open Windows explorer at the path of the current notebook's directory (if a notebook is open).
     def show_notebook_in_explorer(self):
