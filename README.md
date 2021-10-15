@@ -8,6 +8,25 @@ Made for jotting down unstructured thoughts and keeping a clear head.
 - Notes are stored as TSV (tab-separated values) files separated by date, with their custom tags and a 'date created' timestamp.
 - Filter notes by multiple selected tags and/or a date range and export result as a TSV file.
 
+### Simple installation
+
+Download binaries for your operating system from the Releases page and simply run Jotterbox.exe.
+
+### Manual installation
+
+Ensure Python 3 is installed on your system.
+
+MacOS users may have to run the following command if tkinter is not installed:
+
+    brew install python-tk
+
+Clone this repository and, with pip installed, run the following command in the directory containing 'requirements.txt':
+
+    pip install -r requirements.txt
+    
+Start Jotterbox by simply running 'Jotterbox.py'!
+    
+
 ### Usage
 
 - New note: With a notebook (directory of notes) open, click '+' button or just begin typing to add a new note. 

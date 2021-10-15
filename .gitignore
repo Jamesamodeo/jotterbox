@@ -1,4 +1,8 @@
-.DS_store
-
 # App settings file
 settings.txt
+
+# Build results
+__pycache__/
+build/
+dist/
+Jotterbox.spec

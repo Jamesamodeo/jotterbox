@@ -1,4 +1,3 @@
-from time import time
 from tkinter import filedialog, font, simpledialog, ttk
 from tkinter import *
 from tkcalendar import DateEntry
@@ -497,15 +496,15 @@ class App:
     WINDOW_DEFAULT_HEIGHT = 500
     WINDOW_TITLE_ROOT = 'Jotterbox'
     NOTEBOOK_SETTINGS_FILENAME = '.jotterbox'
-    APP_SETTINGS_FILENAME = os.path.dirname(os.path.realpath(__file__)) + '\settings.txt'
-    ICON_FILENAME = os.path.dirname(os.path.realpath(__file__)) + '\icon.ico'
+    APP_SETTINGS_PATH = os.path.dirname(os.path.realpath(__file__)) + '\settings.txt'
+    ICON_PATH = os.path.dirname(os.path.realpath(__file__)) + '\Jotterbox.ico'
 
     # Initialise window.
     def __init__(self):
         self.root = Tk()
         self.root.withdraw()
         self.root.title(App.WINDOW_TITLE_ROOT)
-        self.root.iconbitmap(App.ICON_FILENAME)
+        self.root.iconbitmap(App.ICON_PATH)
         self.root.protocol("WM_DELETE_WINDOW", self.on_close)
         self.root.option_add('*tearOff', FALSE)
         self.root.geometry('{}x{}'.format(App.WINDOW_DEFAULT_WIDTH, App.WINDOW_DEFAULT_HEIGHT))
@@ -645,7 +644,7 @@ class App:
 
     # Load application settings from NOTEBOOK_SETTINGS_FILENAME.
     def load_app_settings(self):
-        data = App.load_file(Path(App.APP_SETTINGS_FILENAME))
+        data = App.load_file(Path(App.APP_SETTINGS_PATH))
 
         if data:
             try:
@@ -682,7 +681,7 @@ class App:
         for setting in settings:
             data += str(setting) + ','
 
-        self.save_file(Path(App.APP_SETTINGS_FILENAME), data)
+        self.save_file(Path(App.APP_SETTINGS_PATH), data)
     
     # Save all loaded notes. Includes removing deleted notes from where they were loaded.
     def save_notebook(self, event=None):
