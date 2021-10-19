@@ -496,8 +496,8 @@ class App:
     WINDOW_DEFAULT_HEIGHT = 500
     WINDOW_TITLE_ROOT = 'Jotterbox'
     NOTEBOOK_SETTINGS_FILENAME = '.jotterbox'
-    APP_SETTINGS_PATH = os.path.dirname(os.path.realpath(__file__)) + '\settings.txt'
-    ICON_PATH = os.path.dirname(os.path.realpath(__file__)) + '\Jotterbox.ico'
+    APP_SETTINGS_PATH = os.path.dirname(os.path.realpath(__file__)) + '/settings.txt'
+    ICON_PATH = os.path.dirname(os.path.realpath(__file__)) + '/Jotterbox.ico'
 
     # Initialise window.
     def __init__(self):
@@ -596,20 +596,20 @@ class App:
         menubar.add_cascade(label='File', menu=menu_file)
         menubar.add_cascade(label='View', menu=menu_view)
 
-        menu_file.add_command(label='New notebook', command=self.new_notebook, accelerator='Ctrl+N')
-        menu_file.add_command(label='Open notebook', command=self.open_notebook, accelerator='Ctrl+O')
-        menu_file.add_command(label='Save notebook', command=self.save_notebook, accelerator='Ctrl+S')
-        menu_file.add_command(label='Close notebook', command=self.close_notebook)
-        menu_file.add_command(label='Show notebook in explorer', command=self.show_notebook_in_explorer)
+        menu_file.add_command(label='New Notebook', command=self.new_notebook, accelerator='Ctrl+N')
+        menu_file.add_command(label='Open Notebook', command=self.open_notebook, accelerator='Ctrl+O')
+        menu_file.add_command(label='Save Notebook', command=self.save_notebook, accelerator='Ctrl+S')
+        menu_file.add_command(label='Close Notebook', command=self.close_notebook)
+        menu_file.add_command(label='Show Notebook in Explorer', command=self.show_notebook_in_explorer)
         menu_file.add_separator()
         export = Menu(menubar)
         menu_file.add_cascade(label='Export...', menu=export)
-        export.add_command(label='Jotterbox file (.tsv)', command=lambda e: self.export('TSV'))
+        export.add_command(label='Jotterbox File (.tsv)', command=lambda e: self.export('TSV'))
         menu_file.add_separator()
         menu_file.add_command(label='Exit', command=self.on_close)
 
-        menu_view.add_checkbutton(label='Show date menu', command=self.date_menu_frame_animator.update, onvalue=1, offvalue=0, variable=self.date_menu_frame_animator.opened, accelerator='Ctrl+D')
-        menu_view.add_checkbutton(label='Show tag menu', command=self.tag_menu_frame_animator.update, onvalue=1, offvalue=0, variable=self.tag_menu_frame_animator.opened, accelerator='Ctrl+T')
+        menu_view.add_checkbutton(label='Show Date Menu', command=self.date_menu_frame_animator.update, onvalue=1, offvalue=0, variable=self.date_menu_frame_animator.opened, accelerator='Ctrl+D')
+        menu_view.add_checkbutton(label='Show Tag Menu', command=self.tag_menu_frame_animator.update, onvalue=1, offvalue=0, variable=self.tag_menu_frame_animator.opened, accelerator='Ctrl+T')
 
         self.root['menu'] = menubar
 
@@ -699,7 +699,7 @@ class App:
 
     # Create a new notebook (database of notes) after prompting for its path. Also, initialise the notebook's title with a prompt.
     def new_notebook(self, event=None):
-        input = filedialog.askdirectory(initialdir='/', title='Select directory')
+        input = filedialog.askdirectory(initialdir='/', title='Select Directory')
         if input != '':
             dir = Path(input)
             title = simpledialog.askstring('', 'Name your notebook', parent=self.root)
@@ -708,7 +708,7 @@ class App:
 
     # Load a notebook (its settings and database of notes) after prompting for its path.
     def open_notebook(self, event=None):
-        input = filedialog.askdirectory(initialdir='/', title='Select directory')
+        input = filedialog.askdirectory(initialdir='/', title='Select Directory')
         if input != '':
             if self.notebook:
                 self.close_notebook()
@@ -759,7 +759,7 @@ class App:
                 initialdir=self.notebook.dir / 'Export',
                 initialfile='export_{}.tsv'.format(self.notebook.title),
                 filetypes=filetypes,
-                title='Export notes')
+                title='Export Notes')
 
             # Write the data of all displayed notes into the file according to export format
             f = open(path, 'w')
