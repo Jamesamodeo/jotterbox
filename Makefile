@@ -12,5 +12,5 @@ Jotterbox:
 	--add-data="Jotterbox.ico$(SEP)." \
 	--hidden-import=babel.numbers \
 	--icon=Jotterbox.ico \
-	Jotterbox.py
+	Jotterbox.pyw
 
